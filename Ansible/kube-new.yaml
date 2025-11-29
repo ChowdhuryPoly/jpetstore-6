@@ -5,7 +5,7 @@
   tasks:
     - name:  deployment.yaml to Kubernetes master
       copy:
-        src: /var/lib/jenkins/workspace/PERSHOP/deployment.yaml  # Assuming Jenkins workspace variable
+        src: /var/lib/jenkins/workspace/petstore/deployment.yaml  # Assuming Jenkins workspace variable
         dest: /home/ubuntu/
       become: yes  # Use sudo for copying if required
       become_user: root  # Use a privileged user for copying if required
@@ -17,7 +17,7 @@ stage('k8s using ansible'){
             steps{
                 dir('Ansible') {
                     script{
-                        ansiblePlaybook credentialsId: 'ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/', playbook: 'kube.yaml'
+                        ansiblePlaybook credentialsId: 'ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/', playbook: 'kube-new.yaml'
                     }
                 }
             }
